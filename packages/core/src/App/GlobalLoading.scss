@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #0a0a0f 0%, #1a0d1a 25%, #0d1a0d 50%, #1a0d1a 75%, #0a0a0f 100%);
+    background: linear-gradient(135deg, #0b0b12 0%, #0f1020 25%, #0a1420 50%, #101028 75%, #0b0b12 100%);
     background-size: 400% 400%;
     animation: gradient-shift 8s ease-in-out infinite;
     display: flex;
@@ -36,8 +36,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(to right, rgba(30, 144, 255, 0.2) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(30, 144, 255, 0.2) 1px, transparent 1px);
+                linear-gradient(to right, rgba(34, 211, 238, 0.18) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(167, 139, 250, 0.18) 1px, transparent 1px);
             background-size: 15px 15px;
             animation: grid-pulse 4s ease-in-out infinite;
             
@@ -50,7 +50,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, transparent 30%, #0a0a0f 80%);
+            background: radial-gradient(circle at center, transparent 30%, #0b0b12 80%);
             animation: grid-overlay-shift 6s ease-in-out infinite;
         }
     }
@@ -65,9 +65,9 @@
             position: absolute;
             width: 3px;
             height: 3px;
-            background: #1E90FF;
+            background: #22d3ee;
             border-radius: 50%;
-            box-shadow: 0 0 6px 1px rgba(30, 144, 255, 0.7);
+            box-shadow: 0 0 6px 1px rgba(34, 211, 238, 0.6);
             animation: data-point-float 4s ease-in-out infinite, energy-pulse 2s ease-in-out infinite;
             will-change: transform, opacity;
             transform: translateZ(0);
@@ -75,7 +75,7 @@
             @media (min-width: 768px) {
                 width: 4px;
                 height: 4px;
-                box-shadow: 0 0 10px 2px rgba(30, 144, 255, 0.7);
+                box-shadow: 0 0 10px 2px rgba(34, 211, 238, 0.6);
             }
         }
     }
@@ -91,7 +91,7 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: radial-gradient(circle, rgba(0, 191, 255, 0.8) 0%, rgba(30, 144, 255, 0.4) 50%, transparent 100%);
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.8) 0%, rgba(167, 139, 250, 0.35) 50%, transparent 100%);
             border-radius: 50%;
             box-shadow: 0 0 8px rgba(0, 191, 255, 0.6);
             will-change: transform, opacity;
@@ -118,12 +118,12 @@
         
         .binary-digit {
             position: absolute;
-            color: rgba(30, 144, 255, 0.7);
+            color: rgba(167, 139, 250, 0.75);
             font-size: 10px;
             font-family: 'Courier New', monospace;
             top: -20px;
             animation: matrix-rain 8s linear infinite;
-            text-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+            text-shadow: 0 0 6px rgba(167, 139, 250, 0.5);
             will-change: transform, opacity;
             transform: translateZ(0);
             
@@ -156,7 +156,7 @@
             height: auto;
             position: relative;
             z-index: 2;
-            filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.5));
+            filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.45));
             
             @media (min-width: 360px) {
                 width: 70px;
@@ -178,7 +178,7 @@
             transform: translate(-50%, -50%);
             width: 80px;
             height: 80px;
-            background: radial-gradient(circle, rgba(30, 144, 255, 0.4) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.35) 0%, transparent 70%);
             border-radius: 50%;
             z-index: 1;
             animation: energy-pulse 3s ease-in-out infinite;
@@ -229,11 +229,11 @@
             align-items: center;
             gap: 6px;
             padding: 8px 12px;
-            background: rgba(18, 25, 40, 0.6);
-            border: 1px solid rgba(30, 144, 255, 0.3);
+            background: rgba(18, 22, 40, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.3);
             border-radius: 20px;
             backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(30, 144, 255, 0.2);
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.18);
             transition: all 0.3s ease;
 
             @media (min-width: 480px) {
@@ -264,12 +264,12 @@
             .deriv-name {
                 font-size: 11px;
                 font-weight: 700;
-                color: #1E90FF;
-                background: linear-gradient(90deg, #1E90FF, #00BFFF);
+                color: #a78bfa;
+                background: linear-gradient(90deg, #a78bfa, #22d3ee);
                 background-clip: text;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
+                text-shadow: 0 0 10px rgba(167, 139, 250, 0.45);
 
                 @media (min-width: 480px) {
                     font-size: 12px;
@@ -287,15 +287,15 @@
                 transform: translate(-50%, -50%);
                 width: 100%;
                 height: 100%;
-                background: radial-gradient(circle, rgba(30, 144, 255, 0.1) 0%, transparent 70%);
+                background: radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 70%);
                 border-radius: 20px;
                 opacity: 0;
                 animation: brand-glow-pulse 3s ease-in-out infinite;
             }
 
             &:hover {
-                border-color: rgba(30, 144, 255, 0.6);
-                box-shadow: 0 0 20px rgba(30, 144, 255, 0.4);
+                border-color: rgba(167, 139, 250, 0.55);
+                box-shadow: 0 0 20px rgba(167, 139, 250, 0.35);
                 transform: translateY(-1px);
             }
         }
@@ -326,11 +326,11 @@
     /* Trading terminal */
     .trading-terminal {
         width: 100%;
-        background: rgba(18, 25, 40, 0.8);
-        border: 1px solid rgba(30, 144, 255, 0.3);
+        background: rgba(14, 16, 30, 0.8);
+        border: 1px solid rgba(34, 211, 238, 0.28);
         border-radius: 8px;
         padding: 10px;
-        box-shadow: 0 0 20px rgba(30, 144, 255, 0.2);
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.18);
         backdrop-filter: blur(5px);
         position: relative;
         overflow: hidden;
@@ -346,7 +346,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(30, 144, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.12), transparent);
             animation: holographic-shimmer 3s ease-in-out infinite;
             will-change: transform;
             transform: translateZ(0);
@@ -369,7 +369,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(to right, transparent, rgba(30, 144, 255, 0.5), transparent);
+            background: linear-gradient(to right, transparent, rgba(34, 211, 238, 0.5), transparent);
         }
         
         .terminal-header {
@@ -411,7 +411,7 @@
                 display: flex;
                 align-items: center;
                 font-size: 8px;
-                color: #00ff47;
+                color: #22d3ee;
                 
                 @media (min-width: 480px) {
                     font-size: 9px;
@@ -424,10 +424,10 @@
                 .status-indicator {
                     width: 4px;
                     height: 4px;
-                    background: #00ff47;
+                    background: #22d3ee;
                     border-radius: 50%;
                     margin-right: 3px;
-                    box-shadow: 0 0 5px #00ff47;
+                    box-shadow: 0 0 6px #22d3ee;
                     animation: status-pulse 2s infinite, energy-pulse 1.5s infinite;
                     
                     @media (min-width: 480px) {
@@ -449,7 +449,7 @@
             position: relative;
             height: 70px;
             margin-bottom: 10px;
-            background: rgba(10, 10, 15, 0.5);
+            background: rgba(8, 10, 18, 0.5);
             border-radius: 5px;
             overflow: hidden;
             
@@ -532,7 +532,7 @@
                     .body {
                         position: absolute;
                         width: 2px;
-                        background: linear-gradient(to bottom, #00BFFF, #1E90FF);
+                        background: linear-gradient(to bottom, #22d3ee, #a78bfa);
                         bottom: 0;
                         border-radius: 1px;
                         
@@ -711,10 +711,10 @@
                 
                 .progress-bar {
                     height: 100%;
-                    background: linear-gradient(to right, #1E90FF, #00BFFF);
+                    background: linear-gradient(to right, #22d3ee, #a78bfa);
                     border-radius: 2px;
                     position: relative;
-                    box-shadow: 0 0 8px rgba(30, 144, 255, 0.5);
+                    box-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
                     animation: energy-pulse 2s ease-in-out infinite;
                     
                     @media (min-width: 768px) {
@@ -727,7 +727,7 @@
                         right: 0;
                         bottom: 0;
                         width: 10px;
-                        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.7));
+                        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6));
                         animation: progress-glow 1.5s infinite;
                         
                         @media (min-width: 480px) {
@@ -747,7 +747,7 @@
                         height: 5px;
                         background: #fff;
                         border-radius: 50%;
-                        box-shadow: 0 0 5px #fff;
+                        box-shadow: 0 0 6px #fff;
                         animation: energy-pulse 1s ease-in-out infinite;
                         
                         @media (min-width: 480px) {
@@ -815,7 +815,7 @@
             position: relative;
             margin: 3px;
             font-size: 14px;
-            filter: drop-shadow(0 0 5px rgba(30, 144, 255, 0.7));
+            filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.6));
             animation: energy-pulse 3s ease-in-out infinite;
             will-change: transform, opacity;
             transform: translateZ(0);
@@ -836,7 +836,7 @@
                 left: 50%;
                 width: 16px;
                 height: 16px;
-                background: radial-gradient(circle, rgba(30, 144, 255, 0.5) 0%, transparent 70%);
+                background: radial-gradient(circle, rgba(167, 139, 250, 0.45) 0%, transparent 70%);
                 border-radius: 50%;
                 transform: translate(-50%, -50%);
                 z-index: -1;
@@ -861,7 +861,7 @@
                 transform: translateX(-50%);
                 width: 1px;
                 height: 8px;
-                background: linear-gradient(to bottom, rgba(30, 144, 255, 0.8), transparent);
+                background: linear-gradient(to bottom, rgba(34, 211, 238, 0.75), transparent);
                 animation: energy-pulse 1.5s ease-in-out infinite;
                 will-change: transform, opacity;
                 
@@ -936,7 +936,7 @@
         }
         
         span {
-            background: linear-gradient(90deg, #1E90FF, #00BFFF, #1E90FF);
+            background: linear-gradient(90deg, #22d3ee, #a78bfa, #22d3ee);
             background-size: 200% auto;
             background-clip: text;
             -webkit-background-clip: text;
@@ -954,9 +954,9 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(30, 144, 255, 0.8);
+            background: rgba(167, 139, 250, 0.8);
             border-radius: 50%;
-            box-shadow: 0 0 5px rgba(30, 144, 255, 0.7);
+            box-shadow: 0 0 7px rgba(167, 139, 250, 0.6);
             animation: energy-pulse 2s ease-in-out infinite;
             will-change: transform, opacity;
             transform: translateZ(0);
@@ -983,7 +983,7 @@
                 transform: translate(-50%, -50%);
                 width: 12px;
                 height: 12px;
-                border: 1px solid rgba(30, 144, 255, 0.5);
+                border: 1px solid rgba(167, 139, 250, 0.5);
                 border-radius: 50%;
                 animation: node-pulse 2s infinite;
                 will-change: transform, opacity;

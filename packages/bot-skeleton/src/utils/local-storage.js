@@ -11,6 +11,14 @@ import Under8 from './bots/DoubleOverWithanalysis.xml';
 import Dodo from './bots/Aiunder8-7-6-5recoveryunder3-4-5adjustable.xml';
 import Pepe from './bots/PROFITGAINERXVTscunentrypointbeforrun.xml';
 import Kuku from './bots/PROFITGAINERXVT.xml';
+import Marketkiller from './bots/Marketkiller.xml';
+import V6strikerbot from './bots/V6strikerbot.xml';
+import CandlemineVersion2 from './bots/CandlemineVersion2.xml';
+import EVENODDTRADERBOT from './bots/EVEN-ODDTRADERBOT.xml';
+import ExpertSpeedBotByCHOSENDOLLARPRINTERFx from './bots/ExpertSpeedBotByCHOSENDOLLARPRINTERFx.xml';
+import AUTOC4VOLTAIPREMIUMROBOT from './bots/AUTOC4VOLTAIPREMIUMROBOT.xml';
+import MASTERBOTV6UPGRADEDDBot from './bots/MASTERBOTV6UPGRADEDDBot.xml';
+
 
 // Ensure Blockly is available globally
 const getBlockly = () => {
@@ -82,6 +90,55 @@ const STATIC_BOTS = {
         id: 'kuku',
         name: 'PROFIT GAINER XVT',
         xml: Kuku,
+        timestamp: Date.now(),
+        save_type: save_types.LOCAL,
+    },
+    market_killer: {
+        id: 'market_killer',
+        name: 'Market Killer',
+        xml: Marketkiller,
+        timestamp: Date.now(),
+        save_type: save_types.LOCAL,
+    },
+    v6_striker_bot: {
+        id: 'v6_striker_bot',
+        name: 'V6 Striker Bot',
+        xml: V6strikerbot,
+        timestamp: Date.now(),
+        save_type: save_types.LOCAL,
+    },
+    candlemine_v2: {
+        id: 'candlemine_v2',
+        name: 'Candlemine Version 2',
+        xml: CandlemineVersion2,
+        timestamp: Date.now(),
+        save_type: save_types.LOCAL,
+    },
+    even_odd_trader: {
+        id: 'even_odd_trader',
+        name: 'EVEN-ODD TRADER BOT',
+        xml: EVENODDTRADERBOT,
+        timestamp: Date.now(),
+        save_type: save_types.LOCAL,
+    },
+    expert_speed_bot_cdp_fx: {
+        id: 'expert_speed_bot_cdp_fx',
+        name: 'Expert Speed Bot by CHOSEN DOLLAR PRINTER Fx',
+        xml: ExpertSpeedBotByCHOSENDOLLARPRINTERFx,
+        timestamp: Date.now(),
+        save_type: save_types.LOCAL,
+    },
+    autoc4_voltai_premium: {
+        id: 'autoc4_voltai_premium',
+        name: 'AUTOC4 VOLTAI PREMIUM ROBOT',
+        xml: AUTOC4VOLTAIPREMIUMROBOT,
+        timestamp: Date.now(),
+        save_type: save_types.LOCAL,
+    },
+    master_bot_v6_upgraded: {
+        id: 'master_bot_v6_upgraded',
+        name: 'MASTER BOT V6 UPGRADED DBot',
+        xml: MASTERBOTV6UPGRADEDDBot,
         timestamp: Date.now(),
         save_type: save_types.LOCAL,
     },
