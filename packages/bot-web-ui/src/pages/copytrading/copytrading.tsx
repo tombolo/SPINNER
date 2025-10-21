@@ -15,6 +15,7 @@ const CopyTrading: React.FC = () => {
     const [copying, setCopying] = useState(false);
     const [busy, setBusy] = useState(false);
     const [toast, setToast] = useState<{ type: 'ok' | 'err'; text: string } | null>(null);
+    const [savedToken, setSavedToken] = useState<string | null>(null);
 
     const send = useCallback((payload: Msg) => {
         const ws = wsRef.current;
@@ -48,6 +49,7 @@ const CopyTrading: React.FC = () => {
                             try {
                                 localStorage.setItem('deriv_copier_token', token);
                                 localStorage.setItem('deriv_copy_user_token', token);
+                                setSavedToken(token);
                             } catch {}
                             setToast({ type: 'ok', text: 'Token saved & authorized' });
                         }
@@ -125,6 +127,10 @@ const CopyTrading: React.FC = () => {
 
     useEffect(() => {
         connect();
+        try {
+            const t = localStorage.getItem('deriv_copier_token') || localStorage.getItem('deriv_copy_user_token');
+            if (t) setSavedToken(t);
+        } catch {}
         return () => wsRef.current?.close();
     }, [connect]);
 
@@ -150,12 +156,33 @@ const CopyTrading: React.FC = () => {
                         value={token}
                         onChange={e => setToken(e.target.value)}
                     />
-                    <button className={styles.authBtn} onClick={authorize} disabled={!connected || busy || !token}>Authorize</button>
+                    <div className={styles.inlineBtns}>
+                        <button className={styles.authBtn} onClick={authorize} disabled={!connected || busy || !token}>Authorize</button>
+                        <button
+                            className={styles.saveBtn}
+                            onClick={() => { try { localStorage.setItem('deriv_copier_token', token); localStorage.setItem('deriv_copy_user_token', token); setSavedToken(token); setToast({ type: 'ok', text: 'Token saved' }); } catch {} }}
+                            disabled={!token}
+                        >Save</button>
+                    </div>
                 </div>
                 <div className={styles.actions}>
                     <button className={styles.startBtn} onClick={startCopy} disabled={!canStart}>Start Copying</button>
                     <button className={styles.stopBtn} onClick={stopCopy} disabled={!canStop}>Stop Copying</button>
                 </div>
+                {savedToken && (
+                    <div className={styles.savedSection}>
+                        <div className={styles.savedTitle}>Saved Token</div>
+                        <button
+                            className={styles.tokenChip}
+                            onClick={() => setToken(savedToken)}
+                            title="Use saved token"
+                        >
+                            <span className={styles.dot}></span>
+                            <span className={styles.mask}>{savedToken.slice(0, 4)}•••{savedToken.slice(-3)}</span>
+                            <span className={styles.use}>Use</span>
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
