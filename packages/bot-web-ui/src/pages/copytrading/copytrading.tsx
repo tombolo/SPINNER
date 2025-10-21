@@ -14,6 +14,7 @@ const CopyTrading: React.FC = () => {
     const [status, setStatus] = useState('Disconnected');
     const [copying, setCopying] = useState(false);
     const [busy, setBusy] = useState(false);
+    const [toast, setToast] = useState<{ type: 'ok' | 'err'; text: string } | null>(null);
 
     const send = useCallback((payload: Msg) => {
         const ws = wsRef.current;
@@ -40,9 +41,15 @@ const CopyTrading: React.FC = () => {
                         if (data.error) {
                             setAuthorized(false);
                             setStatus(data.error.message || 'Authorization failed');
+                            setToast({ type: 'err', text: data.error.message || 'Authorization failed' });
                         } else {
                             setAuthorized(true);
                             setStatus('Authorized');
+                            try {
+                                localStorage.setItem('deriv_copier_token', token);
+                                localStorage.setItem('deriv_copy_user_token', token);
+                            } catch {}
+                            setToast({ type: 'ok', text: 'Token saved & authorized' });
                         }
                         setBusy(false);
                     }
@@ -50,18 +57,22 @@ const CopyTrading: React.FC = () => {
                         if (data.error) {
                             setStatus(data.error.message || 'Copy start error');
                             setCopying(false);
+                            setToast({ type: 'err', text: data.error.message || 'Copy start error' });
                         } else if (data.copy_start === 1) {
                             setCopying(true);
                             setStatus('✅ Copying started successfully');
+                            setToast({ type: 'ok', text: 'Copying started' });
                         }
                         setBusy(false);
                     }
                     if (data.msg_type === 'copy_stop') {
                         if (data.error) {
                             setStatus(data.error.message || 'Copy stop error');
+                            setToast({ type: 'err', text: data.error.message || 'Copy stop error' });
                         } else if (data.copy_stop === 1) {
                             setCopying(false);
                             setStatus('⛔ Copying stopped');
+                            setToast({ type: 'ok', text: 'Copying stopped' });
                         }
                         setBusy(false);
                     }
@@ -127,6 +138,11 @@ const CopyTrading: React.FC = () => {
                 <div className={styles.status} data-state={authorized ? 'ok' : connected ? 'connected' : 'off'}>
                     {status}
                 </div>
+                {toast && (
+                    <div className={`${styles.toast} ${toast.type === 'ok' ? styles.toastOk : styles.toastErr}`}>
+                        {toast.text}
+                    </div>
+                )}
                 <div className={styles.inputRow}>
                     <input
                         type="password"
