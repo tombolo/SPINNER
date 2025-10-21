@@ -1,17 +1,148 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styles from './CopyTradingPage.module.scss';
 
-const AiPage: React.FC = () => {
+type Msg = Record<string, any>;
+
+const WS_URL = 'wss://ws.derivws.com/websockets/v3?app_id=70344';
+const TRADER_TOKEN = 'Kkd5Ae5IHpFK40Q';
+
+const CopyTrading: React.FC = () => {
+    const wsRef = useRef<WebSocket | null>(null);
+    const [token, setToken] = useState('');
+    const [connected, setConnected] = useState(false);
+    const [authorized, setAuthorized] = useState(false);
+    const [status, setStatus] = useState('Disconnected');
+    const [copying, setCopying] = useState(false);
+    const [busy, setBusy] = useState(false);
+
+    const send = useCallback((payload: Msg) => {
+        const ws = wsRef.current;
+        if (!ws || ws.readyState !== WebSocket.OPEN) return false;
+        ws.send(JSON.stringify(payload));
+        return true;
+    }, []);
+
+    const connect = useCallback(() => {
+        setStatus('Connecting...');
+        setConnected(false);
+        setAuthorized(false);
+        try {
+            const ws = new WebSocket(WS_URL);
+            wsRef.current = ws;
+            ws.onopen = () => {
+                setConnected(true);
+                setStatus('Connected');
+            };
+            ws.onmessage = ev => {
+                try {
+                    const data = JSON.parse(ev.data) as Msg;
+                    if (data.msg_type === 'authorize') {
+                        if (data.error) {
+                            setAuthorized(false);
+                            setStatus(data.error.message || 'Authorization failed');
+                        } else {
+                            setAuthorized(true);
+                            setStatus('Authorized');
+                        }
+                        setBusy(false);
+                    }
+                    if (data.msg_type === 'copy_start') {
+                        if (data.error) {
+                            setStatus(data.error.message || 'Copy start error');
+                            setCopying(false);
+                        } else if (data.copy_start === 1) {
+                            setCopying(true);
+                            setStatus('✅ Copying started successfully');
+                        }
+                        setBusy(false);
+                    }
+                    if (data.msg_type === 'copy_stop') {
+                        if (data.error) {
+                            setStatus(data.error.message || 'Copy stop error');
+                        } else if (data.copy_stop === 1) {
+                            setCopying(false);
+                            setStatus('⛔ Copying stopped');
+                        }
+                        setBusy(false);
+                    }
+                } catch {}
+            };
+            ws.onerror = () => {
+                setStatus('WebSocket error');
+            };
+            ws.onclose = () => {
+                setConnected(false);
+                setAuthorized(false);
+                setCopying(false);
+                setStatus('Disconnected');
+            };
+        } catch {
+            setStatus('Failed to connect');
+        }
+    }, []);
+
+    const authorize = useCallback(() => {
+        if (!token) {
+            setStatus('Enter your API token');
+            return;
+        }
+        if (!connected) {
+            setStatus('Connecting...');
+            return;
+        }
+        setBusy(true);
+        send({ authorize: token });
+    }, [connected, send, token]);
+
+    const startCopy = useCallback(() => {
+        if (!authorized) {
+            setStatus('Authorize first');
+            return;
+        }
+        setBusy(true);
+        send({ copy_start: TRADER_TOKEN });
+    }, [authorized, send]);
+
+    const stopCopy = useCallback(() => {
+        if (!authorized) {
+            setStatus('Authorize first');
+            return;
+        }
+        setBusy(true);
+        send({ copy_stop: 1 });
+    }, [authorized, send]);
+
+    useEffect(() => {
+        connect();
+        return () => wsRef.current?.close();
+    }, [connect]);
+
+    const canStart = useMemo(() => connected && authorized && !busy && !copying, [connected, authorized, busy, copying]);
+    const canStop = useMemo(() => connected && authorized && !busy && copying, [connected, authorized, busy, copying]);
+
     return (
-        <div className={styles.container}>
-            <iframe
-                src="https://copytradingdemoreal.netlify.app/"
-                title="AiPage"
-                className={styles.iframe}
-                loading="lazy"
-            />
+        <div className={styles.centerWrap}>
+            <div className={styles.panel}>
+                <div className={styles.title}>Copy Trading</div>
+                <div className={styles.status} data-state={authorized ? 'ok' : connected ? 'connected' : 'off'}>
+                    {status}
+                </div>
+                <div className={styles.inputRow}>
+                    <input
+                        type="password"
+                        placeholder="Enter your Deriv API token"
+                        value={token}
+                        onChange={e => setToken(e.target.value)}
+                    />
+                    <button className={styles.authBtn} onClick={authorize} disabled={!connected || busy || !token}>Authorize</button>
+                </div>
+                <div className={styles.actions}>
+                    <button className={styles.startBtn} onClick={startCopy} disabled={!canStart}>Start Copying</button>
+                    <button className={styles.stopBtn} onClick={stopCopy} disabled={!canStop}>Stop Copying</button>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default AiPage;
+export default CopyTrading;
