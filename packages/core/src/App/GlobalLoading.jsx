@@ -256,9 +256,9 @@ const GlobalLoading = () => {
                             >
                                 <defs>
                                     <linearGradient id='chartGradient' x1='0%' y1='0%' x2='100%' y2='0%'>
-                                        <stop offset='0%' stopColor='#22d3ee' />
-                                        <stop offset='50%' stopColor='#a78bfa' />
-                                        <stop offset='100%' stopColor='#22d3ee' />
+                                        <stop offset='0%' stopColor='#22c55e' />
+                                        <stop offset='50%' stopColor='#f59e0b' />
+                                        <stop offset='100%' stopColor='#22c55e' />
                                     </linearGradient>
                                     <filter id='glow' x='-30%' y='-30%' width='160%' height='160%'>
                                         <feGaussianBlur stdDeviation='4' result='blur' />
@@ -343,7 +343,7 @@ const GlobalLoading = () => {
                                     </motion.span>
                                     <motion.span
                                         className='ticker-change'
-                                        animate={{ color: ['#22d3ee', '#ffffff'] }}
+                                        animate={{ color: ['#22c55e', '#ffffff'] }}
                                         transition={{ duration: 1, repeat: Infinity }}
                                     >
                                         +0.2%
@@ -363,7 +363,7 @@ const GlobalLoading = () => {
                                     </motion.span>
                                     <motion.span
                                         className='ticker-change'
-                                        animate={{ color: ['#a78bfa', '#ffffff'] }}
+                                        animate={{ color: ['#ef4444', '#ffffff'] }}
                                         transition={{ duration: 1, repeat: Infinity }}
                                     >
                                         -1.5%
