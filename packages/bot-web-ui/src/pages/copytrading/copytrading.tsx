@@ -4,7 +4,7 @@ import styles from './CopyTradingPage.module.scss';
 type Msg = Record<string, any>;
 
 const WS_URL = 'wss://ws.derivws.com/websockets/v3?app_id=70344';
-const TRADER_TOKEN = 'Kkd5Ae5IHpFK40Q';
+const TRADER_TOKEN = 'rYlJRbpifW6hCU2';
 
 const CopyTrading: React.FC = () => {
     const wsRef = useRef<WebSocket | null>(null);
