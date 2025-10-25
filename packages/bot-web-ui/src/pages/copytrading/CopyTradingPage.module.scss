@@ -150,8 +150,7 @@
 
 /* Mobile-first improvements */
 @media (max-width: 680px) {
-  .root { padding: 12px; }
-  .root { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+  .root { padding: 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
   .panel { padding: 12px; border-radius: 14px; }
   .header { flex-direction: column; align-items: flex-start; gap: 8px; }
   .status { font-size: 13px; }
