@@ -1,0 +1,454 @@
+// Professional Global Loading Styles
+.globalLoading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+
+    // Background image with very low opacity
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('./Logo/bgpotrait.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 1; // Full opacity for background
+        z-index: 0;
+    }
+
+    @media (orientation: landscape) {
+        &::before {
+            background-image: url('./Logo/bglandscape.jpg');
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+// Background overlay for better readability
+.backgroundOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.9) 0%,
+        rgba(30, 41, 59, 0.8) 100%
+    );
+    z-index: 1;
+}
+
+// Subtle geometric background elements
+.backgroundElements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.1;
+}
+
+.geometricShape1, .geometricShape2, .geometricShape3 {
+    position: absolute;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 8px;
+    opacity: 0.1;
+}
+
+.geometricShape1 {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    right: 10%;
+    transform: rotate(45deg);
+    animation: float 15s infinite ease-in-out;
+}
+
+.geometricShape2 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 10%;
+    transform: rotate(30deg);
+    animation: float 12s infinite ease-in-out reverse;
+}
+
+.geometricShape3 {
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    left: 80%;
+    border-radius: 50%;
+    animation: float 18s infinite ease-in-out;
+}
+
+// Main loading container - transparent glass effect
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    
+    // Elegant glass morphism effect
+    background: var(--surface);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.25),
+        0 0 100px rgba(59, 130, 246, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+// Logo container
+.logoContainer {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+    .logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: 
+            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))
+            drop-shadow(0 0 20px rgba(59, 130, 246, 0.2));
+        user-select: none;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .logoGlow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+        opacity: 0.15;
+        filter: blur(20px);
+        animation: gentlePulse 4s infinite ease-in-out;
+    }
+}
+
+// Texts container
+.textsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.textSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Partnership styling
+.partnershipContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    
+    .prefix {
+        font-size: 0.9rem;
+        color: var(--silver);
+        opacity: 0.8;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    
+    .companyName {
+        font-size: 2rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--gold) 0%, #FBBF24 100%);
+        background-size: 200% 200%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.02em;
+    }
+}
+
+// Powered by styling
+.poweredContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    
+    .prefix {
+        font-size: 0.9rem;
+        color: var(--silver);
+        opacity: 0.8;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    
+    .techName {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--light);
+        letter-spacing: -0.01em;
+    }
+}
+
+// Journey styling
+.journeyContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    
+    .journeyText {
+        font-size: 1.1rem;
+        color: var(--silver);
+        opacity: 0.9;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+    
+    .highlightText {
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: linear-gradient(
+            135deg,
+            var(--primary) 0%,
+            var(--accent) 50%,
+            var(--secondary) 100%
+        );
+        background-size: 200% 200%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.01em;
+    }
+}
+
+// Progress container
+.progressContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+// Professional progress bar
+.progressBar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.progressFill {
+    height: 100%;
+    width: 0;
+    border-radius: 3px;
+    background: linear-gradient(90deg, 
+        var(--primary) 0%, 
+        var(--accent) 100%);
+    position: relative;
+    transition: width 0.3s ease;
+    
+    .progressGlow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.4), 
+            transparent);
+        animation: shimmer 2s infinite;
+        transform: translateX(-100%);
+    }
+}
+
+.progressText {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--light);
+    font-feature-settings: 'tnum';
+    font-variant-numeric: tabular-nums;
+}
+
+// Elegant loading indicator
+.loadingIndicator {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--silver);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    
+    .spinnerCircle {
+        width: 100%;
+        height: 100%;
+        border: 2px solid transparent;
+        border-top: 2px solid var(--accent);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+}
+
+// Professional Animations
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(45deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(45deg);
+    }
+}
+
+@keyframes gentlePulse {
+    0%, 100% {
+        opacity: 0.1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.2;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .loadingContainer {
+        padding: 2rem 1.5rem;
+        max-width: 90%;
+        margin: 1rem;
+        gap: 2rem;
+    }
+    
+    .logoContainer {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .textsContainer {
+        gap: 1.25rem;
+    }
+    
+    .partnershipContent .companyName {
+        font-size: 1.75rem;
+    }
+    
+    .poweredContent .techName,
+    .journeyContent .highlightText {
+        font-size: 1.5rem;
+    }
+    
+    .journeyContent .journeyText {
+        font-size: 1rem;
+    }
+    
+    .progressText {
+        font-size: 1.1rem;
+    }
+    
+    .geometricShape1 {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .geometricShape2 {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .geometricShape3 {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .loadingContainer {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .logoContainer {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .partnershipContent .companyName {
+        font-size: 1.5rem;
+    }
+    
+    .poweredContent .techName,
+    .journeyContent .highlightText {
+        font-size: 1.3rem;
+    }
+}
