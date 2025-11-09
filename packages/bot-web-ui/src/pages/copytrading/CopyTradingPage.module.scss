@@ -606,7 +606,7 @@
     height: 1rem;
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    border-top-color: white;
+    border-top-color: #ffffff;
     animation: spin 1s ease-in-out infinite;
     display: inline-block;
   }
@@ -745,7 +745,7 @@
     gap: var(--element-gap);
     padding: 0.75rem 1rem;
     border-radius: var(--border-radius-sm);
-    background: white;
+    background: #ffffff;
     border: var(--border-width) solid var(--stroke);
     transition: var(--transition);
     position: relative;
@@ -923,9 +923,6 @@
     border-radius: 0;
     border-left: none;
     border-right: none;
-  }
-  
-  .panel {
     padding: 1.75rem;
     gap: 1.25rem;
   }
@@ -962,10 +959,6 @@
   
   .panel {
     padding: 2.5rem 3rem;
-  }
-  
-  .panel {
-    padding: 2rem;
     gap: 1.5rem;
   }
   
@@ -983,7 +976,7 @@
 @media print {
   .root {
     padding: 0;
-    background: white;
+    background: #ffffff;
   }
   
   .panel {
