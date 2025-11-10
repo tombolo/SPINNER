@@ -88,6 +88,7 @@
                 justify-content: flex-start !important;
                 margin-left: 0;
                 padding-left: 0;
+                border-bottom: 2px solid var(--status-info);
 
                 @include mobile-or-tablet-screen {
                     overflow-x: auto;
