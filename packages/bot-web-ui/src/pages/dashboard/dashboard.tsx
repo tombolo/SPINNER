@@ -8,7 +8,6 @@ import OnboardTourHandler from '../tutorials/dbot-tours/onboarding-tour';
 import Cards from './cards';
 import InfoPanel from './info-panel';
 import Announcements from './announcements/announcements';
-import NewsPanel from './news-panel';
 import WithdrawalToaster from './withdrawal-toaster';
 import './dashboard-cards.scss';
 
@@ -64,7 +63,6 @@ const DashboardComponent = observer(({ handleTabChange }: TMobileIconGuide) => {
                             </Text>
                         </div>
                         <Cards has_dashboard_strategies={has_dashboard_strategies} is_mobile={!is_desktop}>
-                            <NewsPanel />
                         </Cards>
                     </div>
                 </div>
