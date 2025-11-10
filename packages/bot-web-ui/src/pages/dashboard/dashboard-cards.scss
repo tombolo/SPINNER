@@ -1,0 +1,107 @@
+// Dashboard Cards Styling
+.dashboard-cards {
+    width: 100%;
+    padding: 1.6rem;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.6rem;
+        margin-bottom: 2.4rem;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+    }
+}
+
+.dashboard-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1.6rem;
+    background: var(--general-main-1);
+    border: 1px solid var(--border-normal);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: var(--button-primary-default);
+
+        .dashboard-card__arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+    }
+
+    &--minimized {
+        padding: 1.2rem;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 4.8rem;
+        height: 4.8rem;
+        border-radius: 8px;
+        background: rgba(var(--button-primary-rgb), 0.1);
+        margin-right: 1.2rem;
+        flex-shrink: 0;
+
+        .dc-icon {
+            color: var(--button-primary-default);
+        }
+
+        @media (max-width: 768px) {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+
+    &__content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__title {
+        margin: 0 0 0.4rem;
+        color: var(--text-prominent);
+        font-weight: 500;
+    }
+
+    &__description {
+        margin: 0;
+        color: var(--text-less-prominent);
+        font-size: 1.2rem;
+        line-height: 1.5;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.4rem;
+        height: 2.4rem;
+        opacity: 0;
+        transition: all 0.3s ease;
+        color: var(--text-less-prominent);
+        margin-left: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+        padding: 1.2rem;
+
+        &__description {
+            font-size: 1.1rem;
+        }
+    }
+}

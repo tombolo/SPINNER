@@ -82,6 +82,53 @@
         &__images {
             background: var(--general-section-6);
         }
+        &__block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 14rem;
+            border-radius: 12px;
+            background: var(--general-main-1);
+            border: 1px solid var(--border-normal);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: var(--button-primary-default);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.3s ease;
+            }
+
+            &:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+                border-color: var(--border-hover);
+
+                &::before {
+                    transform: scaleX(1);
+                }
+
+                .tab__dashboard__table__images {
+                    transform: scale(1.05);
+                }
+            }
+
+            &--minimized {
+                height: 12rem;
+            }
+        }
     }
     &-info-panel {
         &__close-action {
@@ -115,6 +162,10 @@
     &__dashboard {
         display: flex;
         width: 100%;
+        background: var(--general-main-1);
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
         &--tour-active {
             width: calc(100% - 36rem);
@@ -306,8 +357,18 @@
         }
 
         &__table {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: transparent;
+            border-radius: 8px;
+            padding: 0;
+            margin: 0;
+
             &--minimized {
-                width: 100%;
+                height: calc(100% - 10rem);
             }
 
             &__tiles {

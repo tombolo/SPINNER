@@ -23,6 +23,19 @@ type TCardArray = {
 };
 
 const Cards = observer(({ is_mobile, has_dashboard_strategies, children }: TCardProps) => {
+    const cardIcons = {
+        'my-computer': 'IcMyComputer',
+        'google-drive': 'IcGoogleDriveDbot',
+        'bot-builder': 'IcBotBuilder',
+        'quick-strategy': 'IcQuickStrategy',
+    };
+
+    const cardDescriptions = {
+        'my-computer': localize('Upload your bot from your device'),
+        'google-drive': localize('Access your saved bots from Google Drive'),
+        'bot-builder': localize('Build your bot from scratch with our visual editor'),
+        'quick-strategy': localize('Use pre-built strategies to get started quickly'),
+    };
     const { dashboard, load_modal, quick_strategy } = useDBotStore();
     const { toggleLoadModal, setActiveTabIndex } = load_modal;
     const { is_dialog_open, setActiveTab } = dashboard;
@@ -99,57 +112,59 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies, children }: TCard
 
     return React.useMemo(
         () => (
-            <div
-                className={classNames('tab__dashboard__table', {
-                    'tab__dashboard__table--minimized': has_dashboard_strategies && is_mobile,
-                })}
-            >
-                <div
-                    className={classNames('tab__dashboard__table__tiles', {
-                        'tab__dashboard__table__tiles--minimized': has_dashboard_strategies && is_mobile,
-                    })}
-                    id='tab__dashboard__table__tiles'
-                >
-                    {actions.map(icons => {
-                        const { icon, content, callback } = icons;
-                        return (
-                            <div
-                                key={content}
-                                className={classNames('tab__dashboard__table__block', {
-                                    'tab__dashboard__table__block--minimized': has_dashboard_strategies && is_mobile,
-                                })}
-                                onClick={() => {
-                                    callback();
-                                }}
-                                onKeyDown={(e: React.KeyboardEvent) => {
-                                    if (e.key === 'Enter') {
-                                        callback();
-                                    }
-                                }}
-                                tabIndex={0}
-                            >
+            <div className='dashboard-cards'>
+                <div className='dashboard-cards__grid'>
+                    {actions.map((action) => (
+                        <div
+                            key={action.type}
+                            className={classNames('dashboard-card', {
+                                'dashboard-card--minimized': has_dashboard_strategies && is_mobile,
+                            })}
+                            onClick={action.callback}
+                            onKeyDown={(e: React.KeyboardEvent) => {
+                                if (e.key === 'Enter') {
+                                    action.callback();
+                                }
+                            }}
+                            tabIndex={0}
+                        >
+                            <div className='dashboard-card__icon'>
                                 <Icon
-                                    className={classNames('tab__dashboard__table__images', {
-                                        'tab__dashboard__table__images--minimized': has_dashboard_strategies,
-                                    })}
-                                    width='8rem'
-                                    height='8rem'
-                                    icon={icon}
-                                    id={icon}
+                                    icon={action.icon}
+                                    width={is_mobile ? '32' : '40'}
+                                    height={is_mobile ? '32' : '40'}
                                 />
-                                <Text color='prominent' size={is_mobile ? 'xxs' : 'xs'}>
-                                    {content}
+                            </div>
+                            <div className='dashboard-card__content'>
+                                <Text
+                                    as='h3'
+                                    weight='bold'
+                                    size={is_mobile ? 'xs' : 's'}
+                                    line_height='m'
+                                    className='dashboard-card__title'
+                                >
+                                    {action.content}
+                                </Text>
+                                <Text
+                                    as='p'
+                                    size={is_mobile ? 'xxs' : 'xs'}
+                                    line_height='m'
+                                    className='dashboard-card__description'
+                                >
+                                    {cardDescriptions[action.type as keyof typeof cardDescriptions]}
                                 </Text>
                             </div>
-                        );
-                    })}
+                            <div className='dashboard-card__arrow'>
+                                <Icon icon='IcChevronRight' size={16} />
+                            </div>
+                        </div>
+                    ))}
                 </div>
                 {children}
                 <DashboardBotList />
             </div>
         ),
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [is_dialog_open, has_dashboard_strategies, children]
+        [is_dialog_open, has_dashboard_strategies, children, actions]
     );
 });
 

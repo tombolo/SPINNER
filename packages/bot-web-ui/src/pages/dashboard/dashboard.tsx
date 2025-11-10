@@ -10,6 +10,7 @@ import InfoPanel from './info-panel';
 import Announcements from './announcements/announcements';
 import NewsPanel from './news-panel';
 import WithdrawalToaster from './withdrawal-toaster';
+import './dashboard-cards.scss';
 
 type TMobileIconGuide = {
     handleTabChange: (active_number: number) => void;
