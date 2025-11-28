@@ -29,15 +29,17 @@
     
     &--mobile, &--desktop {
         position: fixed;
-        top: 0;
+        top: auto;
         left: 0;
+        right: 0;
+        margin: 0 auto;
         width: auto;
         max-width: 65%;
-        bottom: auto;
+        bottom: 20px;
         min-height: auto;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: center;
         touch-action: none;
         z-index: 10000;
         
@@ -156,21 +158,25 @@
     // Mobile styles
     // Mobile styles (increased size for better readability)
     @include mobile-or-tablet-screen {
-        padding: 1.2rem 1.2rem 1rem;
-        width: 90vw;           // 👈 make it take 90% of the screen width
-        max-width: 480px;      // 👈 cap width for larger phones
-        max-height: 75vh;      // 👈 allow it to occupy more vertical space
-        border-radius: 10px;   // 👈 smoother rounded corners
+        padding: 1.5rem 1.5rem 1.5rem;
+        width: 90vw;
+        max-width: 500px;
+        max-height: 85vh;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     
     &--mobile, &--desktop {
-        position: relative;
-        max-height: 60vh;
-        margin-top: 8px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-height: 80vh;
         z-index: 10001;
         background: linear-gradient(145deg, #ffffff, #f8f9fa);
         border: 1px solid rgba(0, 0, 0, 0.05);
+        margin: 0;
         
         .disclaimer-close {
             position: absolute;
